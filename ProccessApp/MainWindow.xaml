@@ -5,11 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProccessApp"
         mc:Ignorable="d"
-        Title="Proccess Control" Height="350" Width="350">
+        Title="Proccess Control" Height="350" Width="500">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200"/>
             <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="200"/>
         </Grid.ColumnDefinitions>
         <ListBox x:Name="listBox" Grid.Column="0" HorizontalAlignment="Stretch" SelectedItem="{Binding SelectedProcess}" ItemsSource="{Binding Processes}" VerticalAlignment="Stretch">
             <ListBox.ItemTemplate>
@@ -27,14 +28,28 @@
                 <RowDefinition Height="20"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <TextBox  Grid.Row="1" Text="{Binding Count}" >
             </TextBox>
-            <Button Grid.Row="2" Content="Kill Process" Command="{Binding CloseCommand}">
-                
-            </Button>
+            <Button Grid.Row="2" Content="Kill Process" Command="{Binding CloseCommand}"/>
+            <Button Grid.Row="3" Content="Save List Process" Command="{Binding SaveCommand}"/>
+            <Button Grid.Row="4" Content="Read List Access Process" Command="{Binding ReadCommand}"/>
+            <Button Grid.Row="5" Content="Move To Access" Command="{Binding ToAccessCommand}"/>
         </Grid>
-
+        <ListBox Grid.Column="2" HorizontalAlignment="Stretch" SelectedItem="{Binding SelectedAccessProcess}" ItemsSource="{Binding AccessingProcesses}" VerticalAlignment="Stretch">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Border BorderThickness="1" BorderBrush="Aqua">
+                        <Grid HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" Width="Auto" >
+                            <TextBlock Text="{Binding Name}" />
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </Grid>
 </Window>
